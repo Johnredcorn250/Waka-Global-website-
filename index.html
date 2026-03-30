@@ -994,51 +994,68 @@
 
 <!-- ─── PROGRAMS ─────────────────────── -->
 <section class="programs-section" id="programs">
-  <div class="programs-header">
-    <div>
-      <div class="section-label">Programs</div>
-      <h2 class="section-title">Built For<br>Every Goal</h2>
-    </div>
-    <a href="#" class="btn-outline">View All Programs</a>
-  </div>
   <div class="programs-grid">
-    <div class="program-card" style="background-image: url('images/wakastrengthtraining.jpg');">
-      <div class="program-num">01</div>
-      <div class="program-name">Strength Training</div>
-      <div class="program-desc">Build power, discipline, and a foundation that lasts.</div>
-      <div class="program-arrow">→</div>
-    </div>
-    <div class="program-card" style="background-image: url('images/wakasheshape.jpg');">
-      <div class="program-num">02</div>
-      <div class="program-name">Conditioning</div>
-      <div class="program-desc">Push your limits with high-intensity conditioning work.</div>
-      <div class="program-arrow">→</div>
-    </div>
-    <div class="program-card" style="background-image: url('images/wakagroupclasses.jpg');">
-      <div class="program-num">03</div>
-      <div class="program-name">Group Classes</div>
-      <div class="program-desc">Energy that's contagious. Train hard, together.</div>
-      <div class="program-arrow">→</div>
-    </div>
-    <div class="program-card" style="background-image: url('images/wakapersonaltraining.jpg');">
-      <div class="program-num">04</div>
-      <div class="program-name">Personal Coaching</div>
-      <div class="program-desc">One-on-one sessions tailored to your exact goals.</div>
-      <div class="program-arrow">→</div>
-    </div>
-    <div class="program-card" style="background-image: url('images/wakagroupclasses.jpg');">
-      <div class="program-num">05</div>
-      <div class="program-name">Mobility & Recovery</div>
-      <div class="program-desc">Move better, recover faster, perform longer.</div>
-      <div class="program-arrow">→</div>
-    </div>
-    <div class="program-card" style="background-image: url('images/wakahiking.jpg');">
-      <div class="program-num">06</div>
-      <div class="program-name">Hiking</div>
-      <div class="program-desc">Explore Rwanda with the WAKA community.</div>
-      <div class="program-arrow">→</div>
-    </div>
+
+  <div class="program-card"
+    data-title="Strength Training"
+    data-desc="Build strength, muscle, and discipline through structured workouts designed to help you progress safely and consistently."
+    style="background-image: url('images/wakastrengthtraining.jpg');">
+    <div class="program-num">01</div>
+    <div class="program-name">Strength Training</div>
+    <div class="program-desc">Build power, discipline, and a foundation that lasts.</div>
+    <div class="program-arrow">→</div>
   </div>
+
+  <div class="program-card"
+    data-title="Conditioning"
+    data-desc="High-intensity sessions designed to improve endurance, speed, and overall athletic performance."
+    style="background-image: url('images/wakasheshape.jpg');">
+    <div class="program-num">02</div>
+    <div class="program-name">Conditioning</div>
+    <div class="program-desc">Push your limits with high-intensity conditioning work.</div>
+    <div class="program-arrow">→</div>
+  </div>
+
+  <div class="program-card"
+    data-title="Group Classes"
+    data-desc="Train in a motivating group environment where energy, accountability, and community drive your performance."
+    style="background-image: url('images/wakagroupclasses.jpg');">
+    <div class="program-num">03</div>
+    <div class="program-name">Group Classes</div>
+    <div class="program-desc">Energy that's contagious. Train hard, together.</div>
+    <div class="program-arrow">→</div>
+  </div>
+
+  <div class="program-card"
+    data-title="Personal Coaching"
+    data-desc="Work one-on-one with expert coaches to build a program tailored specifically to your goals and lifestyle."
+    style="background-image: url('images/wakapersonaltraining.jpg');">
+    <div class="program-num">04</div>
+    <div class="program-name">Personal Coaching</div>
+    <div class="program-desc">One-on-one sessions tailored to your exact goals.</div>
+    <div class="program-arrow">→</div>
+  </div>
+
+  <div class="program-card"
+    data-title="Mobility & Recovery"
+    data-desc="Improve flexibility, reduce injury risk, and enhance performance through guided recovery and mobility work."
+    style="background-image: url('images/wakagroupclasses.jpg');">
+    <div class="program-num">05</div>
+    <div class="program-name">Mobility & Recovery</div>
+    <div class="program-desc">Move better, recover faster, perform longer.</div>
+    <div class="program-arrow">→</div>
+  </div>
+
+  <div class="program-card"
+    data-title="Hiking"
+    data-desc="Join the WAKA community for outdoor hikes across Rwanda — combining fitness, nature, and connection."
+    style="background-image: url('images/wakahiking.jpg');">
+    <div class="program-num">06</div>
+    <div class="program-name">Hiking</div>
+    <div class="program-desc">Explore Rwanda with the WAKA community.</div>
+    <div class="program-arrow">→</div>
+  </div>
+</div>
 </section>
 
 <!-- ─── WAKA EXPERIENCE ───────────────── -->
@@ -1544,7 +1561,80 @@
       wakaJoinForm.reset();
     });
   }
+<div class="program-modal" id="programModal">
+  <div class="program-modal-content">
+    <span class="program-modal-close">&times;</span>
+    <h3 id="modalTitle"></h3>
+    <p id="modalDesc"></p>
+  </div>
+</div>
 
+<style>
+.program-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 2000;
+}
+.program-modal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.program-modal-content {
+  background: var(--card);
+  padding: 40px;
+  max-width: 500px;
+  width: 90%;
+  border: 1px solid var(--border);
+  position: relative;
+}
+.program-modal-content h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+.program-modal-content p {
+  color: var(--grey);
+  line-height: 1.7;
+}
+.program-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  cursor: pointer;
+}
+</style>
+
+<script>
+const modal = document.getElementById('programModal');
+const modalTitle = document.getElementById('modalTitle');
+const modalDesc = document.getElementById('modalDesc');
+const closeModal = document.querySelector('.program-modal-close');
+
+document.querySelectorAll('.program-card').forEach(card => {
+  card.addEventListener('click', () => {
+    modalTitle.textContent = card.dataset.title;
+    modalDesc.textContent = card.dataset.desc;
+    modal.classList.add('show');
+  });
+});
+
+closeModal.addEventListener('click', () => {
+  modal.classList.remove('show');
+});
+
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    modal.classList.remove('show');
+  }
+});
 </script>
 </body>
 </html>
