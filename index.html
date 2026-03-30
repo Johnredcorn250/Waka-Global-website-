@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WAKA GLOBAL – Train. Work. Connect.</title> 
+<title>WAKA GLOBAL – Train. Work. Connect.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -13,8 +13,8 @@
     --dark: #111111;
     --card: #181818;
     --border: #2a2a2a;
-    --orange: #FF5A00;
-    --orange-light: #FF7A30;
+    --orange: #9A9A9A;
+    --orange-light: #C2C2C2;
     --white: #FFFFFF;
     --grey: #888888;
     --light: #F5F5F0;
@@ -238,6 +238,70 @@
     font-size: 200px; color: rgba(255,90,0,0.08);
     user-select: none; position: absolute;
   }
+
+  .about-carousel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  .carousel-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+  }
+  .carousel-img.active { opacity: 1; }
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(0,0,0,0.45);
+    color: var(--white);
+    font-size: 28px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  }
+  .carousel-btn:hover {
+    background: rgba(0,0,0,0.72);
+    border-color: rgba(255,255,255,0.45);
+  }
+  .carousel-btn.prev { left: 16px; }
+  .carousel-btn.next { right: 16px; }
+  .carousel-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 2;
+  }
+  .carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.35);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .carousel-dot.active {
+    background: var(--white);
+    transform: scale(1.15);
+  }
+
   .about-badge {
     position: absolute; bottom: -20px; right: -20px;
     background: var(--orange); padding: 24px;
@@ -784,7 +848,18 @@
   <div class="about-section">
     <div class="about-visual">
       <div class="about-visual-main">
-        <div class="about-icon">W</div>
+        <div class="about-carousel">
+          <img src="images/waka1.jpg" class="carousel-img active" alt="WAKA community photo 1">
+          <img src="images/waka2.jpg" class="carousel-img" alt="WAKA community photo 2">
+          <img src="images/waka3.jpg" class="carousel-img" alt="WAKA community photo 3">
+          <button class="carousel-btn prev" aria-label="Previous image">‹</button>
+          <button class="carousel-btn next" aria-label="Next image">›</button>
+          <div class="carousel-dots">
+            <button class="carousel-dot active" aria-label="Go to image 1"></button>
+            <button class="carousel-dot" aria-label="Go to image 2"></button>
+            <button class="carousel-dot" aria-label="Go to image 3"></button>
+          </div>
+        </div>
       </div>
       <div class="about-badge">
         <div class="about-badge-num">100%</div>
@@ -1263,6 +1338,41 @@
     el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     observer.observe(el);
   });
+
+  // About section carousel
+  const carouselImages = document.querySelectorAll('.carousel-img');
+  const carouselDots = document.querySelectorAll('.carousel-dot');
+  const nextBtn = document.querySelector('.carousel-btn.next');
+  const prevBtn = document.querySelector('.carousel-btn.prev');
+  let currentSlide = 0;
+
+  function showSlide(index) {
+    carouselImages[currentSlide].classList.remove('active');
+    carouselDots[currentSlide].classList.remove('active');
+    currentSlide = index;
+    carouselImages[currentSlide].classList.add('active');
+    carouselDots[currentSlide].classList.add('active');
+  }
+
+  if (carouselImages.length && nextBtn && prevBtn) {
+    nextBtn.addEventListener('click', () => {
+      showSlide((currentSlide + 1) % carouselImages.length);
+    });
+
+    prevBtn.addEventListener('click', () => {
+      showSlide((currentSlide - 1 + carouselImages.length) % carouselImages.length);
+    });
+
+    carouselDots.forEach((dot, index) => {
+      dot.addEventListener('click', () => showSlide(index));
+    });
+
+    setInterval(() => {
+      showSlide((currentSlide + 1) % carouselImages.length);
+    }, 5000);
+  }
+
 </script>
 </body>
 </html>
+
