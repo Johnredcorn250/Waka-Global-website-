@@ -757,13 +757,26 @@
     .instagram-grid { grid-template-columns: repeat(3, 1fr); }
     .footer-top { grid-template-columns: 1fr 1fr; }
   }
+  .logo-img {
+  height: 28px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 </style>
 </head>
 <body>
 
 <!-- ─── NAVBAR ─────────────────────── -->
 <nav>
-  <a href="#" class="nav-logo">WAKA<span>.</span>GLOBAL</a>
+ <a href="#" class="nav-logo">
+  <img src="images/logo.png" alt="Waka Logo" class="logo-img">
+  WAKA<span>.</span>GLOBAL</a>
   <ul class="nav-links">
     <li><a href="#">Home</a></li>
     <li><a href="#memberships">Memberships</a></li>
