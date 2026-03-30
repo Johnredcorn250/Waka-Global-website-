@@ -80,9 +80,15 @@
     background: linear-gradient(135deg, #0A0A0A 0%, #1a0800 50%, #0A0A0A 100%);
   }
   .hero-bg::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 70% 50%, rgba(255,90,0,0.12) 0%, transparent 65%);
+  content: '';
+  position: absolute;
+  inset: 0;
+
+  background: 
+    url('images/wakalogo.jpeg') center/500px no-repeat,
+    radial-gradient(ellipse at 70% 50%, rgba(255,255,255,0.06) 0%, transparent 65%);
+
+  opacity: 0.08;
   }
   .hero-grid-overlay {
     position: absolute; inset: 0;
