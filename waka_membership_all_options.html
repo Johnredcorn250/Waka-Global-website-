@@ -1,0 +1,2015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WAKA GLOBAL – Train. Work. Connect.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0A0A0A;
+    --dark: #111111;
+    --card: #181818;
+    --border: #2a2a2a;
+    --orange: #A0A0A0;
+    --orange-light: #C0C0C0;
+    --white: #FFFFFF;
+    --grey: #888888;
+    --light: #F5F5F0;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Outfit', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAVBAR ─────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    transition: padding 0.3s;
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 3px;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--orange); }
+  .nav-links {
+    display: flex; gap: 36px; list-style: none;
+  }
+  .nav-links a {
+    color: var(--grey); font-size: 13px; font-weight: 500;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .btn-nav {
+    background: var(--orange); color: var(--white);
+    padding: 10px 24px; border-radius: 2px;
+    font-size: 13px; font-weight: 600; letter-spacing: 1.5px;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .btn-nav:hover { background: var(--orange-light); transform: translateY(-1px); }
+
+  /* ─── HERO ────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; overflow: hidden;
+    background: var(--black);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #0A0A0A 0%, #1a0800 50%, #0A0A0A 100%);
+  }
+  .hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+
+  background: 
+    url('images/wakalogo.jpeg') center/500px no-repeat,
+    radial-gradient(ellipse at 70% 50%, rgba(255,255,255,0.06) 0%, transparent 65%);
+
+  opacity: 0.08;
+  }
+  .hero-grid-overlay {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,90,0,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,90,0,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 60px; max-width: 900px;
+    margin-top: 80px;
+  }
+  .hero-eyebrow {
+    font-size: 12px; font-weight: 600; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--orange);
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 40px; height: 2px; background: var(--orange);
+  }
+  .hero-headline {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(72px, 10vw, 140px);
+    line-height: 0.92;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .hero-headline em {
+    font-style: normal;
+    -webkit-text-stroke: 2px var(--white);
+    color: transparent;
+  }
+  .hero-sub {
+    font-size: 17px; color: var(--grey); line-height: 1.7;
+    max-width: 480px; margin-bottom: 48px; font-weight: 300;
+  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--orange); color: var(--white);
+    padding: 16px 36px; border-radius: 2px;
+    font-size: 14px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); }
+  .btn-outline {
+    border: 1.5px solid rgba(255,255,255,0.3); color: var(--white);
+    padding: 16px 36px; border-radius: 2px;
+    font-size: 14px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; text-decoration: none;
+    transition: border-color 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--white); transform: translateY(-2px); }
+
+  /* Scrolling Ticker */
+  .ticker-wrap {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: var(--orange); overflow: hidden;
+    padding: 12px 0; border-top: none;
+  }
+  .ticker-track {
+    display: flex; gap: 0;
+    animation: ticker 20s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-item {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px; letter-spacing: 3px;
+    padding: 0 40px; color: var(--black);
+    flex-shrink: 0;
+  }
+  .ticker-dot { color: rgba(0,0,0,0.35); margin-right: 40px; }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ─── VALUE STRIP ─────────────────────────────── */
+  .value-strip {
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 60px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background-image: linear-gradient(var(--border), var(--border));
+    background-size: 1px 100%;
+    background-repeat: repeat-x;
+  }
+  .value-item {
+    padding: 0 40px;
+    border-right: 1px solid var(--border);
+  }
+  .value-item:last-child { border-right: none; }
+  .value-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px; color: var(--orange);
+    line-height: 1; margin-bottom: 12px;
+  }
+  .value-title {
+    font-size: 14px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .value-desc { font-size: 13px; color: var(--grey); line-height: 1.6; }
+
+  /* ─── SECTION COMMON ──────────────────────────── */
+  section { padding: 100px 60px; }
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--orange);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 0.95; text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .section-body {
+    font-size: 16px; color: var(--grey);
+    line-height: 1.8; max-width: 540px; font-weight: 300;
+  }
+
+  /* ─── THIS IS WAKA ────────────────────────────── */
+  .about-section {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: center;
+  }
+  .about-visual {
+    position: relative; height: 520px;
+  }
+  .about-visual-main {
+    width: 100%; height: 100%;
+    background: linear-gradient(145deg, #1c0a00, #2a1000);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .about-visual-main::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at center, rgba(255,90,0,0.15) 0%, transparent 65%);
+  }
+  .about-icon {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 200px; color: rgba(255,255,255,0.08);
+    user-select: none; position: absolute;
+  }
+  .about-carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .carousel-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+  }
+  .carousel-img.active { opacity: 1; }
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(10,10,10,0.55);
+    color: var(--white);
+    cursor: pointer;
+    z-index: 3;
+    font-size: 28px;
+    line-height: 1;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .carousel-btn:hover {
+    background: rgba(10,10,10,0.85);
+    border-color: rgba(255,255,255,0.5);
+  }
+  .carousel-btn.prev { left: 16px; }
+  .carousel-btn.next { right: 16px; }
+  .carousel-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 3;
+  }
+  .carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.35);
+    cursor: pointer;
+  }
+  .carousel-dot.active { background: var(--white); }
+  .about-badge {
+    position: absolute; bottom: -20px; right: -20px;
+    background: var(--orange); padding: 24px;
+    width: 140px; height: 140px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+  }
+  .about-badge-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 42px; line-height: 1;
+  }
+  .about-badge-text { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+  .about-stats {
+    display: flex; gap: 40px; margin-top: 40px;
+  }
+  .stat-block { }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 44px;
+    color: var(--white); line-height: 1;
+  }
+  .stat-label { font-size: 12px; color: var(--grey); letter-spacing: 1px; text-transform: uppercase; }
+
+  /* ─── PROGRAMS ────────────────────────────────── */
+  .programs-section { background: var(--dark); }
+  .programs-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 56px;
+  }
+  .programs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .program-card {
+    background: var(--card);
+    background-size: 100%;
+    background-position: center;
+    transition: border-color 0.25s, transform 0.25s, background-size 0.45s ease, box-shadow 0.25s;
+    padding: 36px 28px;
+    cursor: pointer;
+    position: relative; overflow: hidden;
+    transition: background 0.25s;
+    border: 1px solid transparent;
+    aspect-ratio: 3/4;
+    display: flex; flex-direction: column; justify-content: flex-end;
+  }
+  .program-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(255,90,0,0.85) 0%, transparent 60%);
+    opacity: 0; transition: opacity 0.3s;
+    z-index: 1;
+  }
+  .program-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1;
+  }
+  .program-card:hover::before { opacity: 1; }
+  .program-card:hover { border-color: var(--orange); }
+  .program-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 80px; color: rgba(255,255,255,0.04);
+    position: absolute; top: 10px; right: 15px;
+    line-height: 1;
+    z-index: 2;
+  }
+  .program-icon {
+    font-size: 32px; margin-bottom: 16px;
+    position: relative; z-index: 1;
+  }
+  .program-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; letter-spacing: 1px;
+    position: relative; z-index: 2;
+  }
+  .program-desc {
+    font-size: 12px; color: var(--grey);
+    margin-top: 6px; line-height: 1.5;
+    position: relative; z-index: 2;
+    transition: color 0.25s;
+  }
+  .program-card:hover .program-desc { color: rgba(255,255,255,0.8); }
+  .program-arrow {
+    position: absolute; bottom: 28px; right: 24px;
+    opacity: 0; transform: translateX(-8px);
+    transition: opacity 0.25s, transform 0.25s;
+    color: var(--white); font-size: 20px;
+    z-index: 2;
+  }
+  .program-card:hover .program-arrow { opacity: 1; transform: translateX(0); }
+
+  /* ─── EXPERIENCE ──────────────────────────────── */
+  .experience-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 280px;
+    gap: 2px;
+    margin-top: 56px;
+  }
+  .exp-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-end;
+    padding: 36px 32px;
+    background-size: 100%;
+    background-position: center;
+    transition: border-color 0.25s, transform 0.25s, background-size 0.45s ease, box-shadow 0.25s;
+  }
+  .exp-card:hover {
+    border-color: var(--orange);
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+    background-size: 108%;
+  }
+  .exp-card.large { grid-column: span 2; }
+  .exp-card {
+    isolation: isolate;
+  }
+  .exp-card::selection {
+    background: transparent;
+  }
+  .exp-card::before {
+    transition: opacity 0.3s, background 0.3s;
+  }
+  .exp-card:hover::before {
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.32) 55%, rgba(0,0,0,0.12) 100%);
+  }
+  .exp-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0.15) 100%);
+    z-index: 1;
+  }
+  .exp-card::after {
+    content: '↗';
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(255,255,255,0.22);
+    background: rgba(10,10,10,0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    font-size: 18px;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.25s, transform 0.25s;
+  }
+  .exp-card:hover::after {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .exp-bg {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 110px;
+    color: rgba(255,255,255,0.08);
+    line-height: 1;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .exp-content {
+    position: relative;
+    z-index: 2;
+    max-width: 420px;
+  }
+  .exp-icon {
+    font-size: 34px;
+    margin-bottom: 18px;
+  }
+  .exp-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    transition: transform 0.25s ease, color 0.25s ease;
+  }
+  .exp-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.7;
+    max-width: 420px;
+    transition: transform 0.28s ease, color 0.25s ease, opacity 0.25s ease;
+  }
+  .exp-card:hover .exp-title {
+    transform: translateY(-3px);
+    color: var(--white);
+  }
+  .exp-card:hover .exp-desc {
+    transform: translateY(-2px);
+    color: rgba(255,255,255,0.95);
+  }
+
+/* ─── COMMUNITY SPOTLIGHT ─────────────────────── */
+  .community-section { background: var(--dark); }
+  .community-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+    margin-bottom: 56px;
+  }
+  .community-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+  }
+  .community-card {
+    position: relative;
+    min-height: 320px;
+    overflow: hidden;
+    background: var(--card);
+    border: 1px solid var(--border);
+    background-size: 100%;
+    background-position: center;
+    transition: transform 0.3s ease, background-size 0.45s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .community-card.tall {
+    grid-row: span 2;
+    min-height: 643px;
+  }
+  .community-card.wide {
+    grid-column: span 2;
+  }
+  .community-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.28) 55%, rgba(0,0,0,0.1) 100%);
+    z-index: 1;
+    transition: background 0.3s ease;
+  }
+  .community-card:hover {
+    transform: translateY(-4px);
+    background-size: 108%;
+    border-color: var(--orange);
+    box-shadow: 0 16px 36px rgba(0,0,0,0.28);
+  }
+  .community-card:hover::before {
+    background: linear-gradient(to top, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.34) 55%, rgba(0,0,0,0.12) 100%);
+  }
+  .community-card-content {
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    bottom: 22px;
+    z-index: 2;
+  }
+  .community-kicker {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 7px 12px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.12);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+  .community-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .community-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.65;
+    max-width: 360px;
+  }
+  .community-stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 18px;
+  }
+  .community-stat {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 18px 16px;
+  }
+  .community-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 34px;
+    line-height: 1;
+    margin-bottom: 6px;
+    color: var(--white);
+  }
+  .community-stat-label {
+    font-size: 11px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--grey);
+  }
+
+/* ─── TRAINERS ────────────────────────────────── */
+  .trainers-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 56px;
+  }
+  .trainers-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+  }
+  .trainer-card {
+    background: var(--card);
+    position: relative; overflow: hidden;
+    cursor: pointer;
+    border: 1px solid var(--border);
+  }
+  .trainer-img {
+    height: 280px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 80px;
+    background: linear-gradient(160deg, #1a1a1a, #0e0e0e);
+    position: relative;
+  }
+  .trainer-img::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, var(--card) 0%, transparent 40%);
+  }
+  .trainer-info { padding: 24px; }
+  .trainer-name { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .trainer-specialty {
+    font-size: 11px; color: var(--orange);
+    letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .trainer-bio { font-size: 13px; color: var(--grey); line-height: 1.6; }
+
+  /* ─── MEMBERSHIP ──────────────────────────────── */
+  .membership-section { background: var(--dark); }
+  .membership-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+    margin-bottom: 56px;
+  }
+  .membership-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 0;
+  }
+  .mem-card {
+    background: var(--card);
+    padding: 44px 36px;
+    border: 1px solid var(--border);
+    position: relative;
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+  }
+  .mem-card:hover {
+    border-color: var(--orange);
+    transform: translateY(-4px);
+    box-shadow: 0 14px 32px rgba(0,0,0,0.22);
+  }
+  .mem-card.featured {
+    background: linear-gradient(180deg, #242424 0%, #181818 100%);
+    border-color: rgba(255,255,255,0.16);
+  }
+  .mem-badge {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    background: var(--white);
+    color: var(--black);
+    padding: 6px 12px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+  }
+  .mem-type {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: var(--grey);
+  }
+  .mem-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    line-height: 0.95;
+    margin-bottom: 10px;
+    color: var(--white);
+  }
+  .mem-period {
+    font-size: 13px;
+    color: var(--grey);
+    margin-bottom: 28px;
+  }
+  .mem-saving {
+    display: inline-block;
+    margin-bottom: 28px;
+    padding: 7px 12px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+    font-size: 10px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+  .mem-features {
+    list-style: none;
+    margin-bottom: 34px;
+    flex: 1;
+  }
+  .mem-features li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .mem-features li::before {
+    content: '✓';
+    color: var(--orange);
+    font-weight: 700;
+    font-size: 12px;
+  }
+  .mem-extra {
+    font-size: 12px;
+    color: var(--grey);
+    line-height: 1.7;
+    margin-bottom: 18px;
+  }
+  .btn-mem {
+    width: 100%;
+    padding: 14px;
+    background: transparent;
+    border: 1.5px solid rgba(255,255,255,0.25);
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-mem:hover {
+    background: var(--orange);
+    border-color: var(--orange);
+  }
+  .membership-footer {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 18px;
+    margin-top: 18px;
+  }
+  .membership-note-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 18px 20px;
+  }
+  .membership-note-title {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .membership-note-text {
+    font-size: 13px;
+    color: var(--grey);
+    line-height: 1.7;
+  }
+  .membership-note-text strong {
+    color: var(--white);
+  }
+
+/* ─── SCHEDULE ────────────────────────────────── */
+  .schedule-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    margin-top: 56px;
+  }
+  .schedule-card {
+    background: var(--card); padding: 28px;
+    border: 1px solid var(--border);
+    transition: border-color 0.25s;
+    cursor: pointer;
+  }
+  .schedule-card:hover { border-color: var(--orange); }
+  .schedule-time {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px; color: var(--orange); line-height: 1;
+    margin-bottom: 12px;
+  }
+  .schedule-class { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+  .schedule-coach { font-size: 13px; color: var(--grey); margin-bottom: 16px; }
+  .schedule-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tag {
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; padding: 4px 10px;
+    border: 1px solid var(--border); color: var(--grey);
+  }
+  .tag.orange { border-color: var(--orange); color: var(--orange); }
+
+  /* ─── TESTIMONIALS ────────────────────────────── */
+  .testimonials-section { background: var(--dark); overflow: hidden; }
+  .testimonials-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+    margin-top: 56px;
+  }
+  .testi-card {
+    background: var(--card); padding: 48px;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+  .testi-quote {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 80px; color: var(--orange); opacity: 0.15;
+    position: absolute; top: 20px; left: 30px; line-height: 1;
+  }
+  .testi-text {
+    font-size: 20px; line-height: 1.55; font-weight: 400;
+    margin-bottom: 28px; position: relative;
+  }
+  .testi-author { display: flex; align-items: center; gap: 16px; }
+  .testi-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--orange);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 700;
+  }
+  .testi-name { font-size: 14px; font-weight: 700; }
+  .testi-role { font-size: 12px; color: var(--grey); }
+  .testi-stars { color: var(--orange); font-size: 13px; margin-top: 2px; }
+
+  /* ─── INSTAGRAM ───────────────────────────────── */
+  .instagram-grid {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 3px;
+    margin-top: 56px;
+  }
+  .ig-item {
+    aspect-ratio: 1;
+    background: var(--card);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px; cursor: pointer;
+    position: relative; overflow: hidden;
+    transition: opacity 0.25s;
+  }
+  .ig-item:hover { opacity: 0.8; }
+  .ig-overlay {
+    position: absolute; inset: 0;
+    background: rgba(255,90,0,0.7);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.25s;
+    font-size: 28px;
+  }
+  .ig-item:hover .ig-overlay { opacity: 1; }
+  .ig-cta { text-align: center; margin-top: 32px; }
+
+  /* ─── FINAL CTA ───────────────────────────────── */
+  .final-cta {
+    min-height: 60vh;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    position: relative; overflow: hidden;
+    background: var(--black);
+  }
+  .final-cta-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(255,90,0,0.18) 0%, transparent 70%);
+  }
+  .final-cta-content { position: relative; z-index: 1; }
+  .final-cta-title {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(56px, 8vw, 110px);
+    line-height: 0.95; text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .final-cta-title em {
+    font-style: normal;
+    -webkit-text-stroke: 2px var(--white); color: transparent;
+  }
+  .final-cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-whatsapp {
+    background: #25D366; color: var(--white);
+    padding: 16px 36px; border-radius: 2px;
+    font-size: 14px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; text-decoration: none;
+    transition: opacity 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-whatsapp:hover { opacity: 0.88; }
+  .btn-ghost {
+    border: 1.5px solid rgba(255,255,255,0.3); color: var(--white);
+    padding: 16px 36px; border-radius: 2px;
+    font-size: 14px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; text-decoration: none;
+    transition: all 0.2s; display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--white); }
+
+  /* ─── FOOTER ──────────────────────────────────── */
+  footer {
+    background: #080808;
+    border-top: 1px solid var(--border);
+    padding: 60px;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px; margin-bottom: 48px;
+    padding-bottom: 48px; border-bottom: 1px solid var(--border);
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px; letter-spacing: 3px;
+    margin-bottom: 16px;
+  }
+  .footer-logo span { color: var(--orange); }
+  .footer-about { font-size: 13px; color: var(--grey); line-height: 1.7; margin-bottom: 24px; }
+  .footer-socials { display: flex; gap: 12px; }
+  .social-btn {
+    width: 38px; height: 38px;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    text-decoration: none; color: var(--white);
+  }
+  .social-btn:hover { border-color: var(--orange); background: var(--orange); }
+  .footer-col-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--white);
+    margin-bottom: 20px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li {
+    margin-bottom: 10px;
+  }
+  .footer-col ul li a {
+    font-size: 13px; color: var(--grey); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--white); }
+  .footer-info { font-size: 13px; color: var(--grey); line-height: 2; }
+  .footer-info strong { color: var(--white); font-weight: 600; }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-copy { font-size: 12px; color: var(--grey); }
+  .footer-legal { display: flex; gap: 24px; }
+  .footer-legal a { font-size: 12px; color: var(--grey); text-decoration: none; }
+  .footer-legal a:hover { color: var(--white); }
+
+  /* Divider */
+  .divider {
+    width: 48px; height: 3px;
+    background: var(--orange); margin: 0 0 40px;
+  }
+
+  /* Section header flex */
+  .section-header-flex {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 0;
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow { animation: fadeUp 0.7s ease 0.2s both; }
+  .hero-headline { animation: fadeUp 0.7s ease 0.4s both; }
+  .hero-sub { animation: fadeUp 0.7s ease 0.6s both; }
+  .hero-btns { animation: fadeUp 0.7s ease 0.75s both; }
+
+  /* Mobile Responsiveness */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    section { padding: 70px 24px; }
+    .hero-content { padding: 0 24px; }
+    .value-strip { grid-template-columns: 1fr 1fr; padding: 40px 24px; }
+    .value-item { padding: 0 20px; border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
+    .about-section { grid-template-columns: 1fr; }
+    .programs-grid { grid-template-columns: repeat(2, 1fr); }
+    .experience-grid { grid-template-columns: 1fr; grid-auto-rows: 260px; }
+    .exp-card.large { grid-column: span 1; }
+    .community-grid { grid-template-columns: 1fr; }
+    .community-card.tall, .community-card.wide { grid-row: span 1; grid-column: span 1; min-height: 320px; }
+    .community-header { display: block; }
+    .trainers-grid { grid-template-columns: 1fr 1fr; }
+    .membership-grid { grid-template-columns: 1fr; }
+    .membership-footer { grid-template-columns: 1fr; }
+    .schedule-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .instagram-grid { grid-template-columns: repeat(3, 1fr); }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+  .logo-img {
+  height: 28px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.join-form-section {
+  background: var(--black);
+}
+.join-form-wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.join-form-intro {
+  margin-bottom: 28px;
+}
+.join-form {
+  display: grid;
+  gap: 16px;
+  margin-top: 24px;
+}
+.join-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.join-form input,
+.join-form select,
+.join-form textarea {
+  width: 100%;
+  padding: 16px 18px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--white);
+  font-size: 14px;
+  font-family: 'Outfit', sans-serif;
+  transition: border-color 0.2s, transform 0.15s;
+}
+.join-form input::placeholder,
+.join-form textarea::placeholder {
+  color: var(--grey);
+}
+.join-form input:focus,
+.join-form select:focus,
+.join-form textarea:focus {
+  outline: none;
+  border-color: var(--orange);
+  transform: translateY(-1px);
+}
+.join-form textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+.join-form-note {
+  font-size: 12px;
+  color: var(--grey);
+  line-height: 1.7;
+}
+.btn-mem {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+}
+.form-success {
+  display: none;
+  margin-top: 18px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--white);
+  font-size: 14px;
+}
+.form-success.show {
+  display: block;
+}
+@media (max-width: 900px) {
+  .join-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ─── PROGRAM MODAL ─────────────────── */
+.program-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 2000;
+}
+.program-modal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.program-modal-content {
+  background: var(--card);
+  padding: 40px;
+  max-width: 520px;
+  width: min(92vw, 520px);
+  border: 1px solid var(--border);
+  position: relative;
+}
+.program-modal-content h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 30px;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+.program-modal-content p {
+  color: var(--grey);
+  line-height: 1.8;
+  font-size: 15px;
+}
+.program-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 30px;
+  cursor: pointer;
+  line-height: 1;
+  color: var(--white);
+}
+
+</style>
+</head>
+<body>
+
+<!-- ─── NAVBAR ─────────────────────── -->
+<nav>
+ <a href="#" class="nav-logo">
+  <img src="images/wakalogo.jpeg" alt="Waka Logo" class="logo-img">
+  WAKA<span>.</span>GLOBAL</a>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#memberships">Memberships</a></li>
+    <li><a href="#programs">Classes</a></li>
+    <li><a href="#community">Community</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#join-form" class="btn-nav">Join WAKA</a>
+</nav>
+
+<!-- ─── HERO ───────────────────────── -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Kigali's Premier Fitness & Lifestyle Hub</div>
+    <h1 class="hero-headline">
+      Train.<br><em>Work.</em><br>Connect.
+    </h1>
+    <p class="hero-sub">A high-energy fitness and lifestyle space built for people who want more than just a workout.</p>
+    <div class="hero-btns">
+      <a href="#join-form" class="btn-primary">Start Your Trial</a>
+      <a href="#programs" class="btn-outline">Explore Classes</a>
+    </div>
+  </div>
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <span class="ticker-item">Fitness</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">Community</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">Co-working</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">Events</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">Growth</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">Training</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">Lifestyle</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">Fitness</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">Community</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">Co-working</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">Events</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">Growth</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">Training</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">Lifestyle</span><span class="ticker-dot">●</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── VALUE STRIP ─────────────────── -->
+<div class="value-strip">
+  <div class="value-item">
+    <div class="value-num">01</div>
+    <div class="value-title">Community First</div>
+    <div class="value-desc">Train with people who push you forward every single session.</div>
+  </div>
+  <div class="value-item">
+    <div class="value-num">02</div>
+    <div class="value-title">Expert Coaching</div>
+    <div class="value-desc">Guided by experienced trainers who know your goals.</div>
+  </div>
+  <div class="value-item">
+    <div class="value-num">03</div>
+    <div class="value-title">Flexible Access</div>
+    <div class="value-desc">Train your way, on your time — no rigid schedules.</div>
+  </div>
+  <div class="value-item">
+    <div class="value-num">04</div>
+    <div class="value-title">Lifestyle Hub</div>
+    <div class="value-desc">More than fitness — a space to grow beyond the workout.</div>
+  </div>
+</div>
+
+<!-- ─── THIS IS WAKA ─────────────────── -->
+<section id="about">
+  <div class="about-section">
+    <div class="about-visual">
+      <div class="about-visual-main">
+        <div class="about-carousel">
+          <img src="images/waka1.jpg" alt="WAKA women's day event" class="carousel-img active">
+          <img src="images/waka2.jpg" alt="WAKA Car free day sessions" class="carousel-img">
+          <img src="images/waka3.jpg" alt="WAKA community hiking group" class="carousel-img">
+          <img src="images/waka4.jpg" alt="She shape launch" class="carousel-img"> 
+          <img src="images/waka5.jpg" alt="WAKA OPEN 26.2" class="carousel-img">
+
+          <button class="carousel-btn prev" aria-label="Previous image">‹</button>
+          <button class="carousel-btn next" aria-label="Next image">›</button>
+
+          <div class="carousel-dots">
+            <button class="carousel-dot active" aria-label="Show image 1"></button>
+            <button class="carousel-dot" aria-label="Show image 2"></button>
+            <button class="carousel-dot" aria-label="Show image 3"></button>
+            <button class="carousel-dot" aria-label="Show image 4"></button>
+            <button class="carousel-dot" aria-label="Show image 5"></button>
+          </div>
+        </div>
+      </div>
+      <div class="about-badge">
+        <div class="about-badge-num">100%</div>
+        <div class="about-badge-text">Community Driven</div>
+      </div>
+    </div>
+    <div>
+      <div class="section-label">This Is WAKA</div>
+      <div class="divider"></div>
+      <h2 class="section-title">More Than<br>A Gym</h2>
+      <p class="section-body">WAKA is where fitness meets lifestyle. A space built for people who want to train harder, connect deeper, and grow beyond the workout. Whether you're lifting, working, or just showing up — you belong here.</p>
+      <div class="about-stats">
+        <div class="stat-block">
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Active Members</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">20+</div>
+          <div class="stat-label">Weekly Classes</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Expert Trainers</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROGRAMS ─────────────────────── -->
+<section class="programs-section" id="programs">
+  <div class="programs-header">
+    <div>
+      <div class="section-label">Programs</div>
+      <h2 class="section-title">Built For<br>Every Goal</h2>
+    </div>
+    <a href="#" class="btn-outline">View All Programs</a>
+  </div>
+  <div class="programs-grid">
+    <div class="program-card"
+      data-title="Strength Training"
+      data-desc="Build strength, muscle, and discipline through structured workouts designed to help you progress safely and consistently."
+      style="background-image: url('images/wakastrengthtraining.jpg');">
+      <div class="program-num">01</div>
+      <div class="program-name">Strength Training</div>
+      <div class="program-desc">Build power, discipline, and a foundation that lasts.</div>
+      <div class="program-arrow">→</div>
+    </div>
+
+    <div class="program-card"
+      data-title="Conditioning"
+      data-desc="High-intensity sessions designed to improve endurance, stamina, and overall athletic performance in a motivating environment."
+      style="background-image: url('images/wakasheshape.jpg');">
+      <div class="program-num">02</div>
+      <div class="program-name">Conditioning</div>
+      <div class="program-desc">Push your limits with high-intensity conditioning work.</div>
+      <div class="program-arrow">→</div>
+    </div>
+
+    <div class="program-card"
+      data-title="Group Classes"
+      data-desc="Train in a motivating group environment where energy, accountability, and community help keep you consistent."
+      style="background-image: url('images/wakagroupclasses.jpg');">
+      <div class="program-num">03</div>
+      <div class="program-name">Group Classes</div>
+      <div class="program-desc">Energy that's contagious. Train hard, together.</div>
+      <div class="program-arrow">→</div>
+    </div>
+
+    <div class="program-card"
+      data-title="Personal Coaching"
+      data-desc="Work one-on-one with a coach to build a tailored program around your goals, schedule, and starting point."
+      style="background-image: url('images/wakapersonaltraining.jpg');">
+      <div class="program-num">04</div>
+      <div class="program-name">Personal Coaching</div>
+      <div class="program-desc">One-on-one sessions tailored to your exact goals.</div>
+      <div class="program-arrow">→</div>
+    </div>
+
+    <div class="program-card"
+      data-title="Mobility & Recovery"
+      data-desc="Improve flexibility, move better, reduce injury risk, and support long-term performance through guided recovery work."
+      style="background-image: url('images/wakagroupclasses.jpg');">
+      <div class="program-num">05</div>
+      <div class="program-name">Mobility & Recovery</div>
+      <div class="program-desc">Move better, recover faster, perform longer.</div>
+      <div class="program-arrow">→</div>
+    </div>
+
+    <div class="program-card"
+      data-title="Hiking"
+      data-desc="Join the WAKA community outdoors for hikes that combine movement, nature, and connection beyond the gym."
+      style="background-image: url('images/wakahiking.jpg');">
+      <div class="program-num">06</div>
+      <div class="program-name">Hiking</div>
+      <div class="program-desc">Explore Rwanda with the WAKA community.</div>
+      <div class="program-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WAKA EXPERIENCE ───────────────── -->
+<section id="experience">
+  <div class="section-label">The Experience</div>
+  <div class="section-header-flex">
+    <h2 class="section-title">The WAKA<br>Experience</h2>
+  </div>
+  <div class="experience-grid">
+    <a class="exp-card large" href="https://www.instagram.com/p/DV0pn3pCvaE/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer" style="background-image: url('images/wakaclasses.jpg');">
+      <div class="exp-bg">01</div>
+      <div class="exp-content">
+        <div class="exp-title">WAKA Classes</div>
+        <div class="exp-desc">High-energy sessions that blend coaching, community, and consistency — click to watch the class vibe on Instagram.</div>
+      </div>
+    </a>
+
+    <a class="exp-card" href="https://www.instagram.com/p/DUQlwk7ivM1/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer" style="background-image: url('images/wakasmallgroup.jpg');">
+      <div class="exp-bg">02</div>
+      <div class="exp-content">
+        <div class="exp-title">Small Group Training</div>
+        <div class="exp-desc">Focused coaching in a tight-group setting where accountability and progress stay personal.</div>
+      </div>
+    </a>
+
+    <a class="exp-card" href="https://www.instagram.com/reel/DUGEFotCoYi/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer" style="background-image: url('images/wakacoworking.jpg');">
+      <div class="exp-bg">03</div>
+      <div class="exp-content">
+        <div class="exp-title">Co-working Space</div>
+        <div class="exp-desc">A productive lifestyle hub where work, connection, and movement naturally meet.</div>
+      </div>
+    </a>
+
+    <a class="exp-card large" href="https://www.instagram.com/reel/DRejc_wDCy6/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer" style="background-image: url('images/wakaevents.jpg');">
+      <div class="exp-bg">04</div>
+      <div class="exp-content">
+        <div class="exp-title">Community Events</div>
+        <div class="exp-desc">From challenges to special events, WAKA creates moments that go beyond workouts — click to see more.</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ─── COMMUNITY SPOTLIGHT ───────────── -->
+<section class="community-section" id="community">
+  <div class="community-header">
+    <div>
+      <div class="section-label">Community</div>
+      <h2 class="section-title">More Than A Gym.<br>A Community.</h2>
+      <p class="section-body">WAKA is built on shared energy, real connection, and people who keep showing up for themselves and for each other.</p>
+    </div>
+  </div>
+
+  <div class="community-grid">
+    <div class="community-card tall" style="background-image: url('images/wakasheshape.jpg');">
+      <div class="community-card-content">
+        <div class="community-kicker">Built Together</div>
+        <div class="community-title">Women Who Show Up Strong</div>
+        <div class="community-desc">Events, classes, and shared wins that make training feel bigger than the workout itself.</div>
+      </div>
+    </div>
+
+    <div class="community-card" style="background-image: url('images/wakagroupclasses.jpg');">
+      <div class="community-card-content">
+        <div class="community-kicker">Everyday Energy</div>
+        <div class="community-title">Consistency Feels Better Together</div>
+        <div class="community-desc">The kind of room that keeps you moving when motivation alone is not enough.</div>
+      </div>
+    </div>
+
+    <div class="community-card" style="background-image: url('images/wakastrengthtraining.jpg');">
+      <div class="community-card-content">
+        <div class="community-kicker">Real Progress</div>
+        <div class="community-title">Shared Work. Real Results.</div>
+        <div class="community-desc">Strength grows faster in spaces where people push, encourage, and celebrate each other.</div>
+      </div>
+    </div>
+
+    <div class="community-card wide" style="background-image: url('images/wakaclasses.jpg');">
+      <div class="community-card-content">
+        <div class="community-kicker">This Is WAKA</div>
+        <div class="community-title">Movement, Belonging, Momentum</div>
+        <div class="community-desc">From first-timers to regulars, WAKA brings together people who want more from fitness than just reps and sets.</div>
+      </div>
+    </div>
+
+    <div class="community-card" style="background-image: url('images/wakaevents.jpg');">
+      <div class="community-card-content">
+        <div class="community-kicker">Beyond The Gym</div>
+        <div class="community-title">Events That Build Culture</div>
+        <div class="community-desc">Challenges, gatherings, and moments that turn a training space into a real community.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="community-stat-row">
+    <div class="community-stat">
+      <div class="community-stat-num">500+</div>
+      <div class="community-stat-label">Active Members</div>
+    </div>
+    <div class="community-stat">
+      <div class="community-stat-num">20+</div>
+      <div class="community-stat-label">Weekly Classes</div>
+    </div>
+    <div class="community-stat">
+      <div class="community-stat-num">100%</div>
+      <div class="community-stat-label">Community Driven</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TRAINERS ─────────────────────── -->
+<section>
+  <div class="trainers-header">
+    <div>
+      <div class="section-label">Our Coaches</div>
+      <h2 class="section-title">The People<br>Behind WAKA</h2>
+    </div>
+    <a href="#" class="btn-outline">Meet All Coaches</a>
+  </div>
+  <div class="trainers-grid">
+    <div class="trainer-card">
+      <div class="trainer-img">💪</div>
+      <div class="trainer-info">
+        <div class="trainer-name">Alex Mugisha</div>
+        <div class="trainer-specialty">Strength & Conditioning</div>
+        <div class="trainer-bio">7 years of coaching elite athletes and everyday warriors. Alex brings intensity and precision to every session.</div>
+      </div>
+    </div>
+    <div class="trainer-card">
+      <div class="trainer-img">🏃‍♀️</div>
+      <div class="trainer-info">
+        <div class="trainer-name">Grace Uwimana</div>
+        <div class="trainer-specialty">Group Classes & HIIT</div>
+        <div class="trainer-bio">Grace's energy is infectious. She specializes in high-energy classes that leave you feeling accomplished and alive.</div>
+      </div>
+    </div>
+    <div class="trainer-card">
+      <div class="trainer-img">🧘</div>
+      <div class="trainer-info">
+        <div class="trainer-name">David Nkurunziza</div>
+        <div class="trainer-specialty">Mobility & Recovery</div>
+        <div class="trainer-bio">David helps members move pain-free and perform at their peak through expert mobility and recovery programming.</div>
+      </div>
+    </div>
+    <div class="trainer-card">
+      <div class="trainer-img">🎯</div>
+      <div class="trainer-info">
+        <div class="trainer-name">Amara Iradukunda</div>
+        <div class="trainer-specialty">Personal Coaching</div>
+        <div class="trainer-bio">Results-driven and deeply personal — Amara builds programs around your life, not the other way around.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MEMBERSHIP ───────────────────── -->
+<section class="membership-section" id="memberships">
+  <div class="membership-header">
+    <div>
+      <div class="section-label">Membership</div>
+      <h2 class="section-title">Choose Your Plan</h2>
+      <p class="section-body">Built from WAKA’s current pricing board, here are all available membership options presented in a cleaner website format.</p>
+    </div>
+  </div>
+
+  <div class="membership-grid">
+    <div class="mem-card">
+      <div class="mem-type">Day Pass</div>
+      <div class="mem-price">9,000 <span style="font-size:28px;">RWF</span></div>
+      <div class="mem-period">Single-day access</div>
+      <div class="mem-saving">Try WAKA first</div>
+      <ul class="mem-features">
+        <li>One-day gym access</li>
+        <li>Flexible low-commitment option</li>
+        <li>Best for first-time visitors</li>
+        <li>Fastest way to get started</li>
+      </ul>
+      <div class="mem-extra">A simple entry point for anyone who wants to experience the WAKA environment before committing longer-term.</div>
+      <a href="#join-form" class="btn-mem">Get A Day Pass</a>
+    </div>
+
+    <div class="mem-card featured">
+      <div class="mem-badge">Most Popular</div>
+      <div class="mem-type">1 Month</div>
+      <div class="mem-price">65,000 <span style="font-size:28px;">RWF</span></div>
+      <div class="mem-period">Monthly membership</div>
+      <div class="mem-saving">Best short-term value</div>
+      <ul class="mem-features">
+        <li>Unlimited access for one month</li>
+        <li>Great for building consistency</li>
+        <li>Strong value without long commitment</li>
+        <li>Ideal for most new members</li>
+      </ul>
+      <div class="mem-extra">A solid monthly plan for members ready to train consistently and become part of the WAKA community.</div>
+      <a href="#join-form" class="btn-mem">Start Monthly</a>
+    </div>
+
+    <div class="mem-card">
+      <div class="mem-type">3 Months</div>
+      <div class="mem-price">180,000 <span style="font-size:28px;">RWF</span></div>
+      <div class="mem-period">Quarterly membership</div>
+      <div class="mem-saving">Stay locked in longer</div>
+      <ul class="mem-features">
+        <li>Three-month access</li>
+        <li>More time to build routine</li>
+        <li>Great medium-term option</li>
+        <li>Less frequent renewals</li>
+      </ul>
+      <div class="mem-extra">A good fit for people who want momentum over time without jumping straight into a long annual commitment.</div>
+      <a href="#join-form" class="btn-mem">Choose 3 Months</a>
+    </div>
+
+    <div class="mem-card">
+      <div class="mem-type">6 Months</div>
+      <div class="mem-price">330,000 <span style="font-size:28px;">RWF</span></div>
+      <div class="mem-period">Half-year membership</div>
+      <div class="mem-saving">Commit to real progress</div>
+      <ul class="mem-features">
+        <li>Six full months of access</li>
+        <li>Stronger long-term consistency</li>
+        <li>Better for serious training goals</li>
+        <li>Fewer renewals and interruptions</li>
+      </ul>
+      <div class="mem-extra">For members who want enough time to make meaningful progress and fully settle into a training lifestyle.</div>
+      <a href="#join-form" class="btn-mem">Choose 6 Months</a>
+    </div>
+
+    <div class="mem-card">
+      <div class="mem-type">1 Year</div>
+      <div class="mem-price">550,000 <span style="font-size:28px;">RWF</span></div>
+      <div class="mem-period">Annual membership</div>
+      <div class="mem-saving">Best annual value</div>
+      <ul class="mem-features">
+        <li>Full-year access</li>
+        <li>Lower effective monthly cost</li>
+        <li>Best for long-term commitment</li>
+        <li>Ideal for all-in members</li>
+      </ul>
+      <div class="mem-extra">The strongest value for members who know WAKA is their space and want a full year of momentum.</div>
+      <a href="#join-form" class="btn-mem">Go Annual</a>
+    </div>
+
+    <div class="mem-card">
+      <div class="mem-type">Couples 1 Year</div>
+      <div class="mem-price">800,000 <span style="font-size:28px;">RWF</span></div>
+      <div class="mem-period">Annual plan for two</div>
+      <div class="mem-saving">Train together</div>
+      <ul class="mem-features">
+        <li>One-year access for two people</li>
+        <li>Great shared accountability</li>
+        <li>Best for partners training together</li>
+        <li>Strong combined annual value</li>
+      </ul>
+      <div class="mem-extra">A great option for couples who want to stay consistent, support each other, and make WAKA part of their routine together.</div>
+      <a href="#join-form" class="btn-mem">Choose Couples Plan</a>
+    </div>
+  </div>
+
+  <div class="membership-footer">
+    <div class="membership-note-card">
+      <div class="membership-note-title">Payment Info</div>
+      <div class="membership-note-text">
+        MoMo code: <strong>900000</strong><br>
+        Visa accepted and cash accepted at WAKA Kibagabaga.
+      </div>
+    </div>
+    <div class="membership-note-card">
+      <div class="membership-note-title">Need Help Choosing?</div>
+      <div class="membership-note-text">
+        Start with a Day Pass or 1 Month plan if you're new, then upgrade once you know the rhythm that fits you best.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SCHEDULE ─────────────────────── -->
+<section>
+  <div class="section-header-flex" style="margin-bottom: 56px;">
+    <div>
+      <div class="section-label">Schedule</div>
+      <h2 class="section-title">This Week<br>At WAKA</h2>
+    </div>
+    <a href="#" class="btn-outline">View Full Schedule</a>
+  </div>
+  <div class="schedule-grid">
+    <div class="schedule-card">
+      <div class="schedule-time">06:00 AM</div>
+      <div class="schedule-class">Morning Strength</div>
+      <div class="schedule-coach">with Alex Mugisha</div>
+      <div class="schedule-tags">
+        <span class="tag orange">Strength</span>
+        <span class="tag">Mon – Fri</span>
+        <span class="tag">All Levels</span>
+      </div>
+    </div>
+    <div class="schedule-card">
+      <div class="schedule-time">08:30 AM</div>
+      <div class="schedule-class">HIIT Conditioning</div>
+      <div class="schedule-coach">with Grace Uwimana</div>
+      <div class="schedule-tags">
+        <span class="tag orange">HIIT</span>
+        <span class="tag">Tue / Thu / Sat</span>
+        <span class="tag">Intermediate</span>
+      </div>
+    </div>
+    <div class="schedule-card">
+      <div class="schedule-time">12:00 PM</div>
+      <div class="schedule-class">Midday Mobility</div>
+      <div class="schedule-coach">with David Nkurunziza</div>
+      <div class="schedule-tags">
+        <span class="tag orange">Mobility</span>
+        <span class="tag">Mon / Wed / Fri</span>
+        <span class="tag">All Levels</span>
+      </div>
+    </div>
+    <div class="schedule-card">
+      <div class="schedule-time">05:30 PM</div>
+      <div class="schedule-class">Evening Group Class</div>
+      <div class="schedule-coach">with Grace Uwimana</div>
+      <div class="schedule-tags">
+        <span class="tag orange">Group</span>
+        <span class="tag">Daily</span>
+        <span class="tag">All Levels</span>
+      </div>
+    </div>
+    <div class="schedule-card">
+      <div class="schedule-time">07:00 AM</div>
+      <div class="schedule-class">Weekend Warriors</div>
+      <div class="schedule-coach">with Alex Mugisha</div>
+      <div class="schedule-tags">
+        <span class="tag orange">Conditioning</span>
+        <span class="tag">Sat / Sun</span>
+        <span class="tag">Advanced</span>
+      </div>
+    </div>
+    <div class="schedule-card">
+      <div class="schedule-time">09:00 AM</div>
+      <div class="schedule-class">Personal Coaching</div>
+      <div class="schedule-coach">with Amara Iradukunda</div>
+      <div class="schedule-tags">
+        <span class="tag orange">Personal</span>
+        <span class="tag">By Appointment</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ─────────────────── -->
+<section class="testimonials-section">
+  <div class="section-label">Testimonials</div>
+  <h2 class="section-title">What Our<br>Members Say</h2>
+  <div class="testimonials-grid">
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">WAKA doesn't feel like a gym. It feels like a community. I've never been more consistent in my life — and it's entirely because of the people here.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">A</div>
+        <div>
+          <div class="testi-name">Aline Uwase</div>
+          <div class="testi-role">Member since 2023</div>
+          <div class="testi-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">I came for fitness, but stayed for the people. WAKA has become a second home — the coaches genuinely care, and the energy is unlike anything else in Kigali.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">J</div>
+        <div>
+          <div class="testi-name">Jean-Paul Habimana</div>
+          <div class="testi-role">Member since 2022</div>
+          <div class="testi-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">The co-working space alone is worth it. I get my work done, then head to the gym and train. My whole day flows better since joining WAKA.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">M</div>
+        <div>
+          <div class="testi-name">Michelle Ingabire</div>
+          <div class="testi-role">Member since 2024</div>
+          <div class="testi-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">The trainers here actually listen. They built a program around my schedule and my goals — not the other way around. Real results, real coaching.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">E</div>
+        <div>
+          <div class="testi-name">Eric Nshimiyimana</div>
+          <div class="testi-role">Member since 2023</div>
+          <div class="testi-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── INSTAGRAM ─────────────────────── -->
+<section style="background: var(--dark);">
+  <div style="text-align: center; margin-bottom: 56px;">
+    <div class="section-label" style="justify-content: center; display: flex;">Follow Along</div>
+    <h2 class="section-title">@WakaGlobal</h2>
+  </div>
+  <div class="instagram-grid">
+    <div class="ig-item" style="background: linear-gradient(145deg, #1a0800, #2a1000);">🏋️<div class="ig-overlay">❤️</div></div>
+    <div class="ig-item" style="background: linear-gradient(145deg, #0a1a0a, #102a10);">🤸<div class="ig-overlay">❤️</div></div>
+    <div class="ig-item" style="background: linear-gradient(145deg, #1a1000, #2a1a00);">💪<div class="ig-overlay">❤️</div></div>
+    <div class="ig-item" style="background: linear-gradient(145deg, #0a0a1a, #10102a);">🧘<div class="ig-overlay">❤️</div></div>
+    <div class="ig-item" style="background: linear-gradient(145deg, #1a000a, #2a0010);">🎉<div class="ig-overlay">❤️</div></div>
+    <div class="ig-item" style="background: linear-gradient(145deg, #1a1a00, #2a2a00);">🏃<div class="ig-overlay">❤️</div></div>
+  </div>
+  <div class="ig-cta" style="margin-top: 40px;">
+    <a href="https://www.instagram.com/wakaglobal/?hl=en" target="_blank" rel="noopener noreferrer" class="btn-primary">Follow Us On Instagram</a>
+  </div>
+</section>
+
+<!-- ─── FINAL CTA ─────────────────────── -->
+<section class="final-cta">
+  <div class="final-cta-bg"></div>
+  <div class="final-cta-content">
+    <p style="font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: var(--orange); margin-bottom: 24px; font-weight: 700;">Ready To Begin?</p>
+    <h2 class="final-cta-title">
+      Join The<br><em>Movement</em>
+    </h2>
+    <div class="final-cta-btns">
+      <a href="#join-form" class="btn-primary">Start Your Trial</a>
+      <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+        <span>💬</span> WhatsApp Us
+      </a>
+      <a href="#contact" class="btn-ghost">Visit WAKA</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── JOIN FORM ────────────────────── -->
+<section id="join-form" class="join-form-section">
+  <div class="join-form-wrap">
+    <div class="section-label">Join WAKA</div>
+    <div class="join-form-intro">
+      <h2 class="section-title">Start Your Journey</h2>
+      <p class="section-body">This is a sample enquiry form for the demo site. WAKA can later replace it with their actual sign-up system or membership form.</p>
+    </div>
+
+    <form class="join-form" id="wakaJoinForm">
+      <div class="join-form-row">
+        <input type="text" name="full_name" placeholder="Full Name" required>
+        <input type="tel" name="phone" placeholder="Phone Number" required>
+      </div>
+
+      <div class="join-form-row">
+        <input type="email" name="email" placeholder="Email Address" required>
+        <select name="plan" required>
+          <option value="">Select Membership Plan</option>
+          <option value="day-pass">Day Pass</option>
+          <option value="monthly">Monthly</option>
+          <option value="unlimited">Unlimited</option>
+        </select>
+      </div>
+
+      <textarea name="goals" placeholder="Any fitness goals, preferred class times, or questions?"></textarea>
+
+      <button type="submit" class="btn-primary">Submit Request</button>
+      <p class="join-form-note">Demo form only — this can later be connected to WAKA's real registration workflow, email, WhatsApp, Google Forms, or CRM.</p>
+      <div class="form-success" id="formSuccess">Thanks — your request has been captured for the demo.</div>
+    </form>
+  </div>
+</section>
+
+
+<!-- ─── PROGRAM MODAL ───────────────── -->
+<div class="program-modal" id="programModal">
+  <div class="program-modal-content">
+    <span class="program-modal-close">&times;</span>
+    <h3 id="modalTitle"></h3>
+    <p id="modalDesc"></p>
+  </div>
+</div>
+
+<!-- ─── FOOTER ─────────────────────────── -->
+<footer id="contact">
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">WAKA<span>.</span>GLOBAL</div>
+      <p class="footer-about">Kigali's premier fitness and lifestyle hub. We exist to help you train harder, connect deeper, and grow beyond the workout.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn">📸</a>
+        <a href="#" class="social-btn">🐦</a>
+        <a href="#" class="social-btn">📘</a>
+        <a href="#" class="social-btn">💬</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Navigate</div>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#programs">Classes</a></li>
+        <li><a href="#memberships">Memberships</a></li>
+        <li><a href="#community">Community</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Programs</div>
+      <ul>
+        <li><a href="#">Strength Training</a></li>
+        <li><a href="#">Conditioning</a></li>
+        <li><a href="#">Group Classes</a></li>
+        <li><a href="#">Personal Coaching</a></li>
+        <li><a href="#">Mobility & Recovery</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Contact</div>
+      <div class="footer-info">
+        <p><strong>Location</strong><br>Kigali, Rwanda</p><br>
+        <p><strong>Hours</strong><br>Mon–Fri: 5:30am – 9pm<br>Sat–Sun: 7am – 6pm</p><br>
+        <p><strong>Email</strong><br>hello@wakaglobal.com</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 WAKA Global. All rights reserved.</p>
+    <div class="footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Cookie Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Navbar shrink on scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      nav.style.padding = '12px 60px';
+      nav.style.borderBottomColor = '#333';
+    } else {
+      nav.style.padding = '20px 60px';
+      nav.style.borderBottomColor = '#2a2a2a';
+    }
+  });
+
+  // Smooth fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.program-card, .exp-card, .trainer-card, .mem-card, .schedule-card, .testi-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+
+  // About section carousel
+  const carouselImages = document.querySelectorAll('.about-carousel .carousel-img');
+  const carouselDots = document.querySelectorAll('.about-carousel .carousel-dot');
+  const prevBtn = document.querySelector('.about-carousel .prev');
+  const nextBtn = document.querySelector('.about-carousel .next');
+  let carouselIndex = 0;
+  let carouselInterval;
+
+  function showCarouselImage(index) {
+    carouselImages.forEach((img, i) => {
+      img.classList.toggle('active', i === index);
+    });
+    carouselDots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+    });
+    carouselIndex = index;
+  }
+
+  function nextCarouselImage() {
+    showCarouselImage((carouselIndex + 1) % carouselImages.length);
+  }
+
+  function prevCarouselImage() {
+    showCarouselImage((carouselIndex - 1 + carouselImages.length) % carouselImages.length);
+  }
+
+  function startCarouselAutoplay() {
+    carouselInterval = setInterval(nextCarouselImage, 5000);
+  }
+
+  function resetCarouselAutoplay() {
+    clearInterval(carouselInterval);
+    startCarouselAutoplay();
+  }
+
+  if (carouselImages.length) {
+    nextBtn.addEventListener('click', () => {
+      nextCarouselImage();
+      resetCarouselAutoplay();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      prevCarouselImage();
+      resetCarouselAutoplay();
+    });
+
+    carouselDots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        showCarouselImage(index);
+        resetCarouselAutoplay();
+      });
+    });
+
+    startCarouselAutoplay();
+  }
+
+  const wakaJoinForm = document.getElementById('wakaJoinForm');
+  const formSuccess = document.getElementById('formSuccess');
+
+  if (wakaJoinForm) {
+    wakaJoinForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      formSuccess.classList.add('show');
+      wakaJoinForm.reset();
+    });
+  }
+
+
+  // Program modal
+  const programModal = document.getElementById('programModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDesc = document.getElementById('modalDesc');
+  const programModalClose = document.querySelector('.program-modal-close');
+
+  document.querySelectorAll('.program-card').forEach(card => {
+    card.addEventListener('click', () => {
+      modalTitle.textContent = card.dataset.title || '';
+      modalDesc.textContent = card.dataset.desc || '';
+      programModal.classList.add('show');
+    });
+  });
+
+  if (programModalClose) {
+    programModalClose.addEventListener('click', () => {
+      programModal.classList.remove('show');
+    });
+  }
+
+  if (programModal) {
+    programModal.addEventListener('click', (e) => {
+      if (e.target === programModal) {
+        programModal.classList.remove('show');
+      }
+    });
+  }
+
+</script>
+</body>
+</html>
