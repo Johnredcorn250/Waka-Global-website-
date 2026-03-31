@@ -333,13 +333,13 @@
   }
   .program-card {
     background: var(--card);
-    background-size: 100%;
+    background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     transition: border-color 0.25s, transform 0.25s, background-size 0.45s ease, box-shadow 0.25s;
     padding: 36px 28px;
     cursor: pointer;
     position: relative; overflow: hidden;
-    transition: background 0.25s;
     border: 1px solid transparent;
     aspect-ratio: 3/4;
     display: flex; flex-direction: column; justify-content: flex-end;
@@ -359,7 +359,7 @@
     z-index: 1;
   }
   .program-card:hover::before { opacity: 1; }
-  .program-card:hover { border-color: var(--orange); }
+  .program-card:hover { border-color: var(--orange); background-size: 108%; }
   .program-num {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 80px; color: rgba(255,255,255,0.04);
@@ -1346,7 +1346,7 @@
     <div class="program-card"
       data-title="Mobility & Recovery"
       data-desc="Improve flexibility, move better, reduce injury risk, and support long-term performance through guided recovery work."
-      style="background-image: url('images/wakagroupclasses.jpg');">
+      style="background-image: url('images/wakamobility.jpg');">
       <div class="program-num">05</div>
       <div class="program-name">Mobility & Recovery</div>
       <div class="program-desc">Move better, recover faster, perform longer.</div>
