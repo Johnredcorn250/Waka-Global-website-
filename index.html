@@ -856,20 +856,37 @@
   .ig-item {
     aspect-ratio: 1;
     background: var(--card);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 36px; cursor: pointer;
-    position: relative; overflow: hidden;
-    transition: opacity 0.25s;
+    display: block;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background-size 0.45s ease;
+    border: 1px solid var(--border);
+    background-size: 100%;
+    background-position: center;
+    text-decoration: none;
   }
-  .ig-item:hover { opacity: 0.8; }
+  .ig-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.24);
+    border-color: var(--orange);
+    background-size: 108%;
+  }
   .ig-overlay {
     position: absolute; inset: 0;
-    background: rgba(255,90,0,0.7);
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; transition: opacity 0.25s;
-    font-size: 28px;
+    background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.12) 100%);
+    display: flex; align-items: flex-end; justify-content: flex-start;
+    opacity: 1; transition: background 0.25s;
+    font-size: 14px;
+    color: var(--white);
+    padding: 18px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    font-weight: 700;
   }
-  .ig-item:hover .ig-overlay { opacity: 1; }
+  .ig-item:hover .ig-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.18) 100%);
+  }
   .ig-cta { text-align: center; margin-top: 32px; }
 
   /* ─── FINAL CTA ───────────────────────────────── */
@@ -1750,15 +1767,31 @@
 <section style="background: var(--dark);">
   <div style="text-align: center; margin-bottom: 56px;">
     <div class="section-label" style="justify-content: center; display: flex;">Follow Along</div>
-    <h2 class="section-title">@WakaGlobal</h2>
+    <h2 class="section-title">
+      <a href="https://www.instagram.com/wakaglobal/" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
+        @WakaGlobal
+      </a>
+    </h2>
   </div>
   <div class="instagram-grid">
-    <div class="ig-item" style="background: linear-gradient(145deg, #1a0800, #2a1000);">🏋️<div class="ig-overlay">❤️</div></div>
-    <div class="ig-item" style="background: linear-gradient(145deg, #0a1a0a, #102a10);">🤸<div class="ig-overlay">❤️</div></div>
-    <div class="ig-item" style="background: linear-gradient(145deg, #1a1000, #2a1a00);">💪<div class="ig-overlay">❤️</div></div>
-    <div class="ig-item" style="background: linear-gradient(145deg, #0a0a1a, #10102a);">🧘<div class="ig-overlay">❤️</div></div>
-    <div class="ig-item" style="background: linear-gradient(145deg, #1a000a, #2a0010);">🎉<div class="ig-overlay">❤️</div></div>
-    <div class="ig-item" style="background: linear-gradient(145deg, #1a1a00, #2a2a00);">🏃<div class="ig-overlay">❤️</div></div>
+    <a class="ig-item" href="https://www.instagram.com/wakaglobal/" target="_blank" rel="noopener noreferrer" style="background-image: url('images/wakaclasses.jpg');">
+      <div class="ig-overlay">View on Instagram</div>
+    </a>
+    <a class="ig-item" href="https://www.instagram.com/wakaglobal/" target="_blank" rel="noopener noreferrer" style="background-image: url('images/wakasmallgroup.jpg');">
+      <div class="ig-overlay">View on Instagram</div>
+    </a>
+    <a class="ig-item" href="https://www.instagram.com/wakaglobal/" target="_blank" rel="noopener noreferrer" style="background-image: url('images/wakastrengthtraining.jpg');">
+      <div class="ig-overlay">View on Instagram</div>
+    </a>
+    <a class="ig-item" href="https://www.instagram.com/wakaglobal/" target="_blank" rel="noopener noreferrer" style="background-image: url('images/wakacoworking.jpg');">
+      <div class="ig-overlay">View on Instagram</div>
+    </a>
+    <a class="ig-item" href="https://www.instagram.com/wakaglobal/" target="_blank" rel="noopener noreferrer" style="background-image: url('images/wakaevents.jpg');">
+      <div class="ig-overlay">View on Instagram</div>
+    </a>
+    <a class="ig-item" href="https://www.instagram.com/wakaglobal/" target="_blank" rel="noopener noreferrer" style="background-image: url('images/wakasheshape.jpg');">
+      <div class="ig-overlay">View on Instagram</div>
+    </a>
   </div>
   <div class="ig-cta" style="margin-top: 40px;">
     <a href="https://www.instagram.com/wakaglobal/?hl=en" target="_blank" rel="noopener noreferrer" class="btn-primary">Follow Us On Instagram</a>
