@@ -643,7 +643,68 @@
   }
   .trainer-bio { font-size: 13px; color: var(--grey); line-height: 1.6; }
 
-  /* ─── MEMBERSHIP ──────────────────────────────── */
+  
+  /* ─── LOCATIONS ──────────────────────────────── */
+  .locations-section { background: var(--black); }
+  .locations-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+    margin-bottom: 56px;
+  }
+  .locations-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .location-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 34px 30px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .location-card:hover {
+    border-color: var(--orange);
+    transform: translateY(-4px);
+    box-shadow: 0 14px 32px rgba(0,0,0,0.22);
+  }
+  .location-kicker {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 14px;
+  }
+  .location-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    color: var(--white);
+  }
+  .location-address {
+    font-size: 14px;
+    color: var(--grey);
+    line-height: 1.7;
+    max-width: 280px;
+  }
+  .location-link {
+    margin-top: 22px;
+    font-size: 12px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+
+/* ─── MEMBERSHIP ──────────────────────────────── */
   .membership-section { background: var(--dark); }
   .membership-header {
     display: flex;
@@ -856,37 +917,20 @@
   .ig-item {
     aspect-ratio: 1;
     background: var(--card);
-    display: block;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background-size 0.45s ease;
-    border: 1px solid var(--border);
-    background-size: 100%;
-    background-position: center;
-    text-decoration: none;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px; cursor: pointer;
+    position: relative; overflow: hidden;
+    transition: opacity 0.25s;
   }
-  .ig-item:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 32px rgba(0,0,0,0.24);
-    border-color: var(--orange);
-    background-size: 108%;
-  }
+  .ig-item:hover { opacity: 0.8; }
   .ig-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.12) 100%);
-    display: flex; align-items: flex-end; justify-content: flex-start;
-    opacity: 1; transition: background 0.25s;
-    font-size: 14px;
-    color: var(--white);
-    padding: 18px;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    font-weight: 700;
+    background: rgba(255,90,0,0.7);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.25s;
+    font-size: 28px;
   }
-  .ig-item:hover .ig-overlay {
-    background: linear-gradient(to top, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.18) 100%);
-  }
+  .ig-item:hover .ig-overlay { opacity: 1; }
   .ig-cta { text-align: center; margin-top: 32px; }
 
   /* ─── FINAL CTA ───────────────────────────────── */
@@ -1021,6 +1065,7 @@
     .community-card.tall, .community-card.wide { grid-row: span 1; grid-column: span 1; min-height: 320px; }
     .community-header { display: block; }
     .trainers-grid { grid-template-columns: 1fr 1fr; }
+    .locations-grid { grid-template-columns: 1fr; }
     .membership-grid { grid-template-columns: 1fr; }
     .membership-footer { grid-template-columns: 1fr; }
     .schedule-grid { grid-template-columns: 1fr; }
@@ -1515,6 +1560,48 @@
   </div>
 </section>
 
+
+<!-- ─── LOCATIONS ───────────────────── -->
+<section class="locations-section" id="locations">
+  <div class="locations-header">
+    <div>
+      <div class="section-label">Our Locations</div>
+      <h2 class="section-title">Train Where<br>It Fits You</h2>
+      <p class="section-body">WAKA is not just one gym. Train from the branch that fits your routine best and stay connected to the same community across Kigali.</p>
+    </div>
+  </div>
+
+  <div class="locations-grid">
+    <a class="location-card" href="https://www.google.com/maps/search/?api=1&query=WAKA+Towns,+KN+84+St,+Kigali" target="_blank" rel="noopener noreferrer">
+      <div>
+        <div class="location-kicker">Location 01</div>
+        <div class="location-name">WAKA Town</div>
+        <div class="location-address">WAKA Towns, KN 84 St, Kigali</div>
+      </div>
+      <div class="location-link">Open in Maps ↗</div>
+    </a>
+
+    <a class="location-card" href="https://www.google.com/maps/search/?api=1&query=WAKA+Kimi,+18+KG+674+St,+Kigali" target="_blank" rel="noopener noreferrer">
+      <div>
+        <div class="location-kicker">Location 02</div>
+        <div class="location-name">WAKA Kimi</div>
+        <div class="location-address">WAKA Kimi, 18 KG 674 St, Kigali</div>
+      </div>
+      <div class="location-link">Open in Maps ↗</div>
+    </a>
+
+    <a class="location-card" href="https://www.google.com/maps/search/?api=1&query=WAKA+Fitness+Kibagabaga,+KG+12+Ave,+Kigali" target="_blank" rel="noopener noreferrer">
+      <div>
+        <div class="location-kicker">Location 03</div>
+        <div class="location-name">WAKA Kibagabaga</div>
+        <div class="location-address">WAKA Fitness (Kibagabaga), KG 12 Ave, Kigali</div>
+      </div>
+      <div class="location-link">Open in Maps ↗</div>
+    </a>
+  </div>
+</section>
+
+
 <!-- ─── MEMBERSHIP ───────────────────── -->
 <section class="membership-section" id="memberships">
   <div class="membership-header">
@@ -1623,7 +1710,7 @@
       <div class="membership-note-title">Payment Info</div>
       <div class="membership-note-text">
         MoMo code: <strong>900000</strong><br>
-        Visa accepted and cash accepted at WAKA.
+        Visa accepted and cash accepted at WAKA Kibagabaga.
       </div>
     </div>
     <div class="membership-note-card">
@@ -1767,31 +1854,15 @@
 <section style="background: var(--dark);">
   <div style="text-align: center; margin-bottom: 56px;">
     <div class="section-label" style="justify-content: center; display: flex;">Follow Along</div>
-    <h2 class="section-title">
-      <a href="https://www.instagram.com/wakaglobal/" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
-        @WakaGlobal
-      </a>
-    </h2>
+    <h2 class="section-title">@WakaGlobal</h2>
   </div>
   <div class="instagram-grid">
-    <a class="ig-item" href="https://www.instagram.com/wakaglobal/" target="_blank" rel="noopener noreferrer" style="background-image: url('images/wakaclasses.jpg');">
-      <div class="ig-overlay">View on Instagram</div>
-    </a>
-    <a class="ig-item" href="https://www.instagram.com/wakaglobal/" target="_blank" rel="noopener noreferrer" style="background-image: url('images/wakasmallgroup.jpg');">
-      <div class="ig-overlay">View on Instagram</div>
-    </a>
-    <a class="ig-item" href="https://www.instagram.com/wakaglobal/" target="_blank" rel="noopener noreferrer" style="background-image: url('images/wakastrengthtraining.jpg');">
-      <div class="ig-overlay">View on Instagram</div>
-    </a>
-    <a class="ig-item" href="https://www.instagram.com/wakaglobal/" target="_blank" rel="noopener noreferrer" style="background-image: url('images/wakacoworking.jpg');">
-      <div class="ig-overlay">View on Instagram</div>
-    </a>
-    <a class="ig-item" href="https://www.instagram.com/wakaglobal/" target="_blank" rel="noopener noreferrer" style="background-image: url('images/wakaevents.jpg');">
-      <div class="ig-overlay">View on Instagram</div>
-    </a>
-    <a class="ig-item" href="https://www.instagram.com/wakaglobal/" target="_blank" rel="noopener noreferrer" style="background-image: url('images/wakasheshape.jpg');">
-      <div class="ig-overlay">View on Instagram</div>
-    </a>
+    <div class="ig-item" style="background: linear-gradient(145deg, #1a0800, #2a1000);">🏋️<div class="ig-overlay">❤️</div></div>
+    <div class="ig-item" style="background: linear-gradient(145deg, #0a1a0a, #102a10);">🤸<div class="ig-overlay">❤️</div></div>
+    <div class="ig-item" style="background: linear-gradient(145deg, #1a1000, #2a1a00);">💪<div class="ig-overlay">❤️</div></div>
+    <div class="ig-item" style="background: linear-gradient(145deg, #0a0a1a, #10102a);">🧘<div class="ig-overlay">❤️</div></div>
+    <div class="ig-item" style="background: linear-gradient(145deg, #1a000a, #2a0010);">🎉<div class="ig-overlay">❤️</div></div>
+    <div class="ig-item" style="background: linear-gradient(145deg, #1a1a00, #2a2a00);">🏃<div class="ig-overlay">❤️</div></div>
   </div>
   <div class="ig-cta" style="margin-top: 40px;">
     <a href="https://www.instagram.com/wakaglobal/?hl=en" target="_blank" rel="noopener noreferrer" class="btn-primary">Follow Us On Instagram</a>
@@ -1823,7 +1894,7 @@
     <div class="section-label">Join WAKA</div>
     <div class="join-form-intro">
       <h2 class="section-title">Start Your Journey</h2>
-      <p class="section-body">This is a sample enquiry form for the demo site. I can later replace it with the actual sign-up system or membership form.</p>
+      <p class="section-body">This is a sample enquiry form for the demo site. WAKA can later replace it with their actual sign-up system or membership form.</p>
     </div>
 
     <form class="join-form" id="wakaJoinForm">
@@ -1891,7 +1962,7 @@
     <div class="footer-col">
       <div class="footer-col-title">Contact</div>
       <div class="footer-info">
-        <p><strong>Location</strong><br>Kigali, Rwanda</p><br>
+        <p><strong>Locations</strong><br>WAKA Town – KN 84 St, Kigali<br>WAKA Kimi – 18 KG 674 St, Kigali<br>WAKA Kibagabaga – KG 12 Ave, Kigali</p><br>
         <p><strong>Hours</strong><br>Mon–Fri: 5:30am – 10pm<br>Sat–Sun: 7am – 10pm</p><br>
         <p><strong>Email</strong><br>info@wakafitness.com</p>
       </div>
